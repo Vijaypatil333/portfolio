@@ -25,12 +25,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
 
       - name: Install dependencies (exactly as in package-lock.json)
@@ -46,7 +46,7 @@ jobs:
           echo "Build output OK:" && ls -R dist | head -n 30
 
       - name: Save build output
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: dist
           path: dist
@@ -71,11 +71,11 @@ jobs:
       TARGET: ${{ github.event_name == 'pull_request' && 'preview' || 'production' }}
       PROD_FLAG: ${{ github.event_name != 'pull_request' && '--prod' || '' }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
-          node-version: 20
+          node-version: 22
 
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
@@ -95,7 +95,7 @@ jobs:
 
       - name: Comment preview URL on the pull request
         if: github.event_name == 'pull_request'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             await github.rest.issues.createComment({

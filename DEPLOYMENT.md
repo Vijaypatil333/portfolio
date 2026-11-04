@@ -49,8 +49,8 @@ The first push triggers the workflow. **Build** passes. **Deploy** fails until V
 | Secret name | Where to find it |
 |---|---|
 | `VERCEL_TOKEN` | Vercel → **Account Settings → Tokens → Create** |
-| `VERCEL_ORG_ID` | Vercel → **Account Settings → General → Vercel ID** (Team ID if using a team) |
-| `VERCEL_PROJECT_ID` | Project → **Settings → General → Project ID** |
+| `VERCEL_ORG_ID` | Click your **team name** (top-left) → **Settings → General → Team ID**. Starts with `team_`. Not the personal "Vercel ID", which causes `Project not found`. |
+| `VERCEL_PROJECT_ID` | Project → **Settings → General → Project ID**. Starts with `prj_`. |
 
 Add each in GitHub: repo → **Settings → Secrets and variables → Actions → New repository secret**.
 
@@ -94,7 +94,8 @@ HTTPS is issued automatically. The pipeline doesn't change.
 | Symptom | Fix |
 |---|---|
 | `npm ci` fails | Commit `package-lock.json`. It must match `package.json` (run `npm install` and commit). |
-| Deploy: `Project not found` / credentials error | A secret is missing or misnamed (names are case-sensitive). |
+| Deploy: `Project not found` | `VERCEL_ORG_ID` must be the **Team ID** (`team_…`). Also check for spaces/new lines pasted into secrets. |
+| Deploy URL shows "Login – Vercel" | Normal: Deployment Protection guards per-deploy and preview URLs. Share the production domain from the project's **Domains**. To change it: Settings → Deployment Protection. |
 | Site shows old version | Hard refresh (Ctrl+Shift+R). Check the change was merged to `main`. |
 | Builds locally, fails in CI | CI is Linux + Node 20. File names are case-sensitive there. |
 
