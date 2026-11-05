@@ -1,17 +1,39 @@
-# Vijay Patil — Portfolio
+# Vijay Patil | Portfolio
 
-React 18 + Vite 4 single-page portfolio (works on Node 16+).
+[![Live site](https://img.shields.io/badge/Live-www.vijaypatil.in-34d399?style=for-the-badge&logo=vercel&logoColor=white)](https://www.vijaypatil.in)
+[![CI/CD](https://github.com/Vijaypatil333/portfolio/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/Vijaypatil333/portfolio/actions/workflows/ci-cd.yml)
 
-```bash
-npm install
-npm run dev      # local dev server → http://localhost:5173
-npm run build    # production build → dist/
+### 👉 **[www.vijaypatil.in](https://www.vijaypatil.in)**
+
+[![Portfolio preview](public/og-image.png)](https://www.vijaypatil.in)
+
+Personal portfolio of **Vijay Patil**, a backend engineer building scalable, high-volume systems with Node.js, PHP, MySQL, Redis and AWS.
+
+**On the site:** intro · work experience · projects (with architecture flows) · skills · interests · education & achievements · contact · [resume (PDF)](https://www.vijaypatil.in/Vijay_Patil_Resume.pdf)
+
+## Tech stack
+
+| Area | Tools |
+|---|---|
+| Frontend | React 18, Vite 4, plain CSS (dark/light theme, responsive) |
+| CI/CD | GitHub Actions: build → verify → deploy |
+| Hosting | Vercel (global CDN, automatic HTTPS) |
+| Domain | `vijaypatil.in` (DNS on Hostinger) |
+| SEO | Meta tags, Open Graph preview, JSON-LD `Person` schema, sitemap, robots.txt |
+
+## How deployment works
+
+```
+push / PR ──► GitHub Actions ──► build & verify ──► deploy to Vercel ──► www.vijaypatil.in
+                                  (fails? stops)     main → production
+                                                     PR   → preview link on the PR
 ```
 
-## Editing content
-All text lives in [`src/data.js`](src/data.js): profile, stats, experience, projects, skills, interests, education, achievements.
+- Every push to `main` goes live automatically. Pull requests get their own preview URL.
+- **Caching:** each deployment gets a fresh CDN cache, `index.html` is served with `max-age=0, must-revalidate`, and JS/CSS files have content-hashed names. No manual cache purge is needed after a deploy. If an old version appears, it's the browser (hard refresh with `Ctrl+Shift+R`) or a link-preview / search-engine cache.
 
-The downloadable resume is `public/Vijay_Patil_Resume.pdf`.
+Full setup guide: [DEPLOYMENT.md](DEPLOYMENT.md)
 
-## Deploying
-`dist/` is a static site. Deploy it on Vercel, Netlify or GitHub Pages (import the repo; build command `npm run build`, output `dist`).
+## Contact
+
+[Website](https://www.vijaypatil.in) · [LinkedIn](https://www.linkedin.com/in/vijaypatil333/) · [GitHub](https://github.com/Vijaypatil333) · [Email](mailto:patilvijay98968@gmail.com)
